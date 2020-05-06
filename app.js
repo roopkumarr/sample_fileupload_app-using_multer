@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
+// importing fs for file retrival and deletion
+const fs= require('fs');
 var app = express();
 
 app.use(bodyParser.json());
@@ -45,6 +47,13 @@ app.post('/upload_single',async(req, res)=>{
             {
                 res.status(400).send(JSON.stringify({'message':'File upload error'}));
             }else{
+                // if you want to delete file from a specific location
+                // fs.unlink(`./uploads/single/${fileNameSingle}`, function (err) {
+                //     if (err) {
+                //         console.log("error in deleting local images");
+                //     }
+                //     console.log("Post fs")
+                // })
                 res.status(200).send(JSON.stringify({'message':'File uploaded succesfully'}));
             }
         }
